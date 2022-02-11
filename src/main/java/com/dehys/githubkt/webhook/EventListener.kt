@@ -1,4 +1,4 @@
-package com.dehys.githubkt.response
+package com.dehys.githubkt.webhook
 
 @Suppress("unused")
 abstract class EventListener {

@@ -1,4 +1,4 @@
-package com.dehys.githubkt.response.types
+package com.dehys.githubkt.webhook.types
 
 import com.dehys.githubkt.types.repository.Repository
 import com.google.gson.annotations.SerializedName

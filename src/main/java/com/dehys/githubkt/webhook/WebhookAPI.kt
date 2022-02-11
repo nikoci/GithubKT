@@ -1,16 +1,13 @@
-package com.dehys.githubkt.response
+package com.dehys.githubkt.webhook
 
-import com.dehys.githubkt.response.types.Payload
+import com.dehys.githubkt.webhook.types.Payload
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import fi.iki.elonen.NanoHTTPD
 
 
 @Suppress("unused")
-class ResponseServer : NanoHTTPD {
-
-    constructor(host: String?, port: Int) : super(host, port)
-    constructor(port: Int) : super(port)
+object WebhookAPI : NanoHTTPD("0.0.0.0", 24249) {
 
     val payloads: MutableList<Payload> = mutableListOf()
 
@@ -19,7 +16,7 @@ class ResponseServer : NanoHTTPD {
         println(
             """
                 
-                [ResponseServer] Running on http://${if (super.getHostname() == null) "localhost" else super.getHostname()}:${super.getListeningPort()}
+                [GithubKT] WebhookAPI Running on http://${if (super.getHostname() == null) "localhost" else super.getHostname()}:${super.getListeningPort()}
                 
                 """.trimIndent()
         )
@@ -49,5 +46,9 @@ class ResponseServer : NanoHTTPD {
             "application/json",
             result.toString()
         )
+    }
+
+    private fun addPayload(payload: Payload) {
+        payloads.add(payload)
     }
 }

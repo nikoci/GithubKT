@@ -14,9 +14,9 @@ class HttpClient {
 
     fun get(route: String): String? {
         val request = Request.Builder().apply {
-            url(if (route.startsWith("http")) route else if (route.startsWith("/")) Github.BASE_URL+route else Github.BASE_URL+"/$route")
-            if (Github.privateAccessToken != null) {
-                header("Authorization", "token ${Github.privateAccessToken}")
+            url(if (route.startsWith("http")) route else if (route.startsWith("/")) Github.baseUrl+route else Github.baseUrl+"/$route")
+            if (Github.getPrivateAccessToken() != null) {
+                header("Authorization", "token ${Github.getPrivateAccessToken()}")
             }
         }.build()
 

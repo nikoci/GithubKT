@@ -1,4 +1,4 @@
-package com.dehys.githubkt.response.types
+package com.dehys.githubkt.webhook.types
 
 data class PLPusher (
     val name: String,
