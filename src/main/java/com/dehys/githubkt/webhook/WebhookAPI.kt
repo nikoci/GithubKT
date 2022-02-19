@@ -1,6 +1,6 @@
 package com.dehys.githubkt.webhook
 
-import com.dehys.githubkt.webhook.types.Payload
+import com.dehys.githubkt.webhook.events.PushEvent
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import fi.iki.elonen.NanoHTTPD
@@ -9,7 +9,7 @@ import fi.iki.elonen.NanoHTTPD
 @Suppress("unused")
 object WebhookAPI : NanoHTTPD("0.0.0.0", 24249) {
 
-    val payloads: MutableList<Payload> = mutableListOf()
+    val events: MutableList<PushEvent> = mutableListOf()
 
     override fun start() {
         start(SOCKET_READ_TIMEOUT, false)
@@ -29,7 +29,7 @@ object WebhookAPI : NanoHTTPD("0.0.0.0", 24249) {
         if (Method.POST == session.method && "/github" == uri) {
             val files: Map<String, String> = HashMap()
             session.parseBody(files)
-            payloads.add(Gson().fromJson(files["postData"].toString(), Payload::class.java))
+            events.add(Gson().fromJson(files["postData"].toString(), PushEvent::class.java))
 
             //print everything to console
             println("\n\n")
@@ -39,16 +39,12 @@ object WebhookAPI : NanoHTTPD("0.0.0.0", 24249) {
             println("\n\n")
         }
 
-        val result = GsonBuilder().create().toJsonTree(payloads)
+        val result = GsonBuilder().create().toJsonTree(events)
 
         return newFixedLengthResponse(
             Response.Status.OK,
             "application/json",
             result.toString()
         )
-    }
-
-    private fun addPayload(payload: Payload) {
-        payloads.add(payload)
     }
 }
