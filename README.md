@@ -9,8 +9,8 @@
   <a href="https://en.wikipedia.org/wiki/MIT_License"><img alt="Discord" src="https://img.shields.io/github/license/dehys/GithubKT?color=%23f9a154&label=License&style=flat-square"></a>
 </p>
 <p align="center">
-  <a href="https://github.com/dehys/SimpleEmbed/#implementation">Implementation</a> &#xa0; | &#xa0;
-  <a href="https://github.com/dehys/SimpleEmbed/#license">License</a> &#xa0;
+  <a href="https://github.com/dehys/GithubKT/#implementation">Implementation</a> &#xa0; | &#xa0;
+  <a href="https://github.com/dehys/GithubKT/#license">License</a> &#xa0;
 </p>
 
 ## Implementation ##
